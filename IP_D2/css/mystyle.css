@@ -1,0 +1,16 @@
+h1{
+    color: red;
+}
+
+#p1{
+    text-align: right; 
+    font-size: 300%; 
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+#p2{
+    color: brown; 
+    font-size: 300%; 
+    font-family:'Trebuchet MS';
+    text-align: center;
+}
