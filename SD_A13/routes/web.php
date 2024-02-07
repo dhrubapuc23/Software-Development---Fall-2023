@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\NewuserController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,55 +15,15 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-})->name('welcome');
-
-Route::get('/home', function () {
-    return view('home');
-})->name('home');
-
-Route::get('/feature', function () {
-    return view('featurea');
-})->name('featurea');
-
-Route::get('/practice', function () {
-    return view('practicefile');
-})->name('practice');
-
-Route::get('/example', function () {
-    return view('example');
-})->name('example');
-
-Route::get('/content', function () {
-    return view('contents');
-})->name('content');
-
-Route::get('/about/{id?}/post/{pid}', function (string $id=null,string $pid=null) {
-    if($id && $pid)
-    {
-    return "<h1>User: ".$id."</h1><h1>Post: ".$pid."</h1>";
-    }
-    else
-    {
-    return "<h1>Invalid id/post</h1>";
-    }
-})->whereNumber('id')->whereAlpha('pid');
-
-Route::fallback(function(){
-    return "<h1>Page not found!</h1>";
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Auth::routes();
+Route::get('/newuser',[NewuserController::class, 'index'])->name('view.user');
+Route::get('/newuser/{id}',[NewuserController::class, 'getUser'])->name('user');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/delete/{id}',[NewuserController::class, 'deleteUser'])->name('delete.user');
+Route::post('/addusers', [NewuserController::class, 'addUser'])->name('add.user');
+Route::view('/add','adduser')->name('displayform');
+Route::post('/update/{id}',[NewuserController::class, 'updateUser'])->name('update.user');
+Route::get('/updatepage/{id}',[NewuserController::class, 'fetchData'])->name('fetchdata.user');
 
